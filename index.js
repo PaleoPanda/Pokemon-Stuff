@@ -226,12 +226,9 @@ async function findDeals() {
 
   return deals;
 }
-
 // =========================
-// API ROUTE
+// EBAY DELETION ENDPOINT
 // =========================
-const crypto = require("crypto");
-
 app.get("/ebay/deletion", (req, res) => {
   const challengeCode = req.query.challenge_code;
   const verificationToken = process.env.EBAY_VERIFICATION_TOKEN;
@@ -243,6 +240,10 @@ app.get("/ebay/deletion", (req, res) => {
 
   res.json({ challengeResponse: hash });
 });
+// =========================
+// API ROUTE
+// =========================
+
 app.get("/deals", async (req, res) => {
   try {
     console.log("Fetching deals...");

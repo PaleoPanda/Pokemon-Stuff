@@ -232,7 +232,7 @@ async function findDeals() {
 app.get("/ebay/deletion", (req, res) => {
   const challengeCode = req.query.challenge_code;
   const verificationToken = process.env.EBAY_VERIFICATION_TOKEN;
-  const endpoint = "https://pokemon-stuff.onrender.com";
+  const endpoint = "https://pokemon-stuff.onrender.com/ebay/deletion";
 
   const hash = crypto.createHash("sha256")
     .update(challengeCode + verificationToken + endpoint)

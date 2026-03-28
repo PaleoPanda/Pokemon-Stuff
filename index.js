@@ -229,6 +229,19 @@ async function findDeals() {
 // =========================
 // API ROUTE
 // =========================
+const crypto = require("crypto");
+
+app.get("/ebay/deletion", (req, res) => {
+  const challengeCode = req.query.challenge_code;
+  const verificationToken = process.env.EBAY_VERIFICATION_TOKEN;
+  const endpoint = "https://pokemon-stuff.onrender.com";
+
+  const hash = crypto.createHash("sha256")
+    .update(challengeCode + verificationToken + endpoint)
+    .digest("hex");
+
+  res.json({ challengeResponse: hash });
+});
 app.get("/deals", async (req, res) => {
   try {
     console.log("Fetching deals...");
